@@ -1,7 +1,7 @@
 use r#mod::{PlayerModel};
 use crate::r#mod::{Item, Statistics};
 
-#[path= "player/mod.rs"]
+#[path= "mod.rs"]
 mod r#mod;
 
 fn main() {
@@ -19,7 +19,7 @@ fn main() {
 
 }
 
-fn make_player<'a>() -> PlayerModel {
+fn make_player() -> PlayerModel {
     return PlayerModel {
         health: 0,
         id: 0,
