@@ -12,10 +12,12 @@ fn main() {
     println!("Kills: {}", player.stats.kills);
     println!("Item Size: {}", player.items.len());
 
-    let result = kill_other(opponent, player);
+    kill_other(opponent, player);
 
     println!("New Kills: {}", player.stats.kills);
     println!("New Killstreak: {}", player.stats.killstreak)
+
+    self_death(player)
 
 }
 
@@ -31,6 +33,11 @@ fn make_player() -> PlayerModel {
 fn add_item(target: &mut PlayerModel, item: Item) -> &PlayerModel {
     target.items.push(item);
     return target
+}
+
+fn self_death(player: &mut PlayerModel) {
+    player.stats.deaths += 1;
+    println!("You have died! You now have {} deaths", player.stats.deaths)
 }
 
 fn kill_other(model: &mut PlayerModel, ours: &mut PlayerModel) {
