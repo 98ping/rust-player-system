@@ -15,7 +15,7 @@ fn main() {
     kill_other(opponent, player);
 
     println!("New Kills: {}", player.stats.kills);
-    println!("New Killstreak: {}", player.stats.killstreak)
+    println!("New Killstreak: {}", player.stats.killstreak);
 
     self_death(player)
 
