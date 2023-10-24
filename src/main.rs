@@ -1,5 +1,7 @@
+use std::path::Component::ParentDir;
+use log::error;
 use r#mod::{PlayerModel};
-use crate::r#mod::{Item, Statistics};
+use crate::r#mod::{Credential, Item, Statistics};
 
 #[path= "mod.rs"]
 mod r#mod;
@@ -17,7 +19,8 @@ fn main() {
     println!("New Kills: {}", player.stats.kills);
     println!("New Killstreak: {}", player.stats.killstreak);
 
-    self_death(player)
+    self_death(player);
+    apply_player_credential(player, "Joe Bengal".to_string(), "MyPassword22".to_string())
 
 }
 
@@ -26,8 +29,26 @@ fn make_player() -> PlayerModel {
         health: 0,
         id: 0,
         stats: Statistics::default(),
+        credentials: Credential::default(),
         items: vec![],
     }
+}
+
+fn apply_player_credential(target: &mut PlayerModel, uname: String, pwd: String) {
+    if pwd.contains(" ") || pwd.is_empty() {
+        panic!("Your password must not be empty and contain no spaces!")
+    }
+
+    if pwd.len() < 8 {
+        panic!("Your password is too short!")
+    }
+
+    target.credentials = Credential {
+        username: uname,
+        password: pwd
+    };
+
+    println!("Setup a new credential profile for {}", target.id)
 }
 
 fn add_item(target: &mut PlayerModel, item: Item) -> &PlayerModel {
