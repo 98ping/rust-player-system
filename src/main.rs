@@ -30,7 +30,8 @@ fn make_player() -> PlayerModel {
         id: 0,
         stats: Statistics::default(),
         credentials: Credential::default(),
-        items: vec![],
+        position: Position::default(),
+        items: vec![]
     }
 }
 
